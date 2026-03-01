@@ -211,6 +211,17 @@ Modify refund ratio → tier changes live
 
 ---
 
+# 💻 Local Setup
+git clone https://github.com/sai-vishal03/ai-underwriting-agent-grabon.git
+cd ai-underwriting-agent-grabon
+npm install
+npm run dev
+
+Visit:
+http://localhost:3000
+
+---
+
 # 🧠 Why This Is Strong
 
 This system demonstrates:
