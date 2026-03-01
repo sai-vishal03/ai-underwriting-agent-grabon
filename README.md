@@ -1,294 +1,324 @@
-# 🚀 AI Merchant Underwriting Agent
+-```markdown
+# 🚀 AI Merchant Underwriting Agent for GrabCredit & GrabInsurance
 
-### GrabCredit & GrabInsurance | AI Labs – Founder’s Office
+An AI-powered merchant underwriting platform that transforms GrabOn’s transaction intelligence into **explainable, risk-calibrated credit and insurance offers**.
 
-Live Demo:
-👉 [https://ai-underwriting-agent-grabon.vercel.app/](https://ai-underwriting-agent-grabon.vercel.app/)
+This project simulates an NBFC-grade underwriting engine that:
 
----
+- Assigns risk tiers
+- Calculates Probability of Default (PD)
+- Computes Expected Loss (EL)
+- Applies risk-based pricing
+- Evaluates RAROC (Risk-Adjusted Return on Capital)
+- Sends pre-approved offers via WhatsApp
+- Maintains full audit governance
 
-# 📌 Overview
-
-This project is an AI-powered underwriting platform built for GrabOn’s merchant ecosystem.
-
-It evaluates merchant partners and generates **pre-approved working capital loans and insurance offers** using their performance data.
-
-The system is designed to simulate how a real NBFC (Non-Banking Financial Company) would:
-
-* Assess merchant risk
-* Price loans dynamically
-* Estimate expected losses
-* Monitor portfolio exposure
-* Send structured financial offers via WhatsApp
-
-This is not just a dashboard.
-It is a simplified **credit risk engine**.
+🌐 **Live Demo:**  
+https://ai-underwriting-agent-grabon.vercel.app/
 
 ---
 
-# 🎯 Why This Matters
+# 📌 Strategic Context
 
-GrabOn has a strong data advantage:
+GrabOn processes **96M+ annual transactions** across 3,500+ active merchants.
 
-* 12 months of GMV history
-* Customer return rates
-* Refund rates
-* Deal performance
-* Transaction velocity
+Unlike traditional banks, GrabOn has proprietary behavioral data:
 
-Traditional banks do not have this level of platform insight.
+- 12-month GMV momentum
+- Refund and return quality
+- Customer retention behavior
+- Category performance patterns
+- Deal redemption velocity
 
-This project turns that merchant data into:
+This platform demonstrates how GrabOn can convert that data advantage into a scalable **embedded merchant finance engine** — reducing underwriting from days to seconds.
 
-* Risk tiers
-* Credit limits
-* Insurance coverage
-* Risk-adjusted pricing
-* Explainable underwriting decisions
+This is not a dashboard simulation.  
+It is a structured behavioral underwriting system.
 
 ---
 
-# 🧠 What This System Does
+# 🎯 What This System Does
 
-For each merchant, the platform:
+For each merchant, the system:
 
-1. Analyzes 12-month performance data
-2. Calculates a Risk Score (0–100)
-3. Assigns Risk Tier (Tier 1 / Tier 2 / Tier 3 / Reject)
-4. Calculates:
-
-   * Credit Limit
-   * Interest Rate (risk-based pricing)
-   * Probability of Default (PD)
-   * Expected Loss
-   * RAROC (Risk Adjusted Return on Capital)
-5. Generates a clear, data-backed explanation
-6. Sends a formatted WhatsApp offer (Admin only)
-
----
-
-# 🏦 Financial Intelligence Engine
-
-The system includes simplified NBFC-grade logic:
-
-## ✅ Risk-Based Pricing
-
-Interest rate increases as risk score decreases.
-
-Base Rate + Risk Premium
-Higher risk → Higher pricing
+1. Analyzes 12-month performance data  
+2. Calculates composite risk score (0–100)  
+3. Assigns Tier (1 / 2 / 3 / Reject)  
+4. Estimates Probability of Default (PD)  
+5. Computes Expected Loss (EL)  
+6. Applies dynamic credit limit multiplier  
+7. Prices interest rate via risk curve  
+8. Validates RAROC threshold  
+9. Generates fully explainable underwriting rationale  
+10. Sends structured WhatsApp offer (admin controlled)  
+11. Logs all actions for audit compliance  
 
 ---
 
-## ✅ Probability of Default (PD)
+# 🏗 Architecture Overview
 
-Risk score is converted into estimated default probability using a logistic model.
+```
 
-Higher volatility or refund rate → Higher PD
+Merchant Performance Data
+↓
+Next.js Frontend (TypeScript + Tailwind)
+↓
+Risk Engine (Deterministic Financial Logic)
+↓
+Claude AI (Explainability + Structured Narrative)
+↓
+Decision Layer (Tier + Pricing + Limit)
+↓
+Admin Governance
+↓
+WhatsApp Business API (Twilio Sandbox)
+↓
+Offer Delivery + Audit Logging
+
+```
 
 ---
 
-## ✅ Expected Loss (EL)
+# ⚙️ AI vs Deterministic Logic
+
+To ensure financial rigor:
+
+### Deterministic Components
+- Risk Score
+- PD calculation
+- Expected Loss
+- Credit limit
+- Interest rate pricing
+- RAROC validation
+- Exposure management
+
+These are formula-driven and auditable.
+
+### Claude AI is used for:
+- Generating structured underwriting explanations
+- Referencing specific merchant data points
+- Simulating internal credit memos
+- Enhancing narrative clarity for non-technical stakeholders
+
+This prevents black-box financial decisions while leveraging LLM reasoning strength.
+
+---
+
+# 📊 Core Financial Models
+
+## 1️⃣ Risk Score (0–100)
+
+Composite weighted score:
+
+```
+
+Risk Score =
+0.35 × GMV Momentum
+
+* 0.25 × (100 – Refund Rate Score)
+* 0.15 × Customer Retention
+* 0.15 × Stability Index
+* 0.10 × Profitability Signals
+
+```
+
+Higher score = lower risk.
+
+---
+
+## 2️⃣ Risk Tiering
+
+| Score Range | Tier     | Meaning                     |
+|------------|----------|-----------------------------|
+| 80–100     | Tier 1   | Low risk, best pricing      |
+| 60–79      | Tier 2   | Moderate risk               |
+| 40–59      | Tier 3   | Elevated risk               |
+| < 40       | Reject   | Not eligible                |
+
+---
+
+## 3️⃣ Probability of Default (PD)
+
+Logistic approximation:
+
+```
+
+PD = 1 / (1 + exp( -( -5 + 0.12 × (100 – Risk Score) ) ))
+
+```
+
+Simulated range:
+- Tier 1 → ~2–4%
+- Tier 2 → ~6–9%
+- Tier 3 → ~11–18%
+- Reject → >18%
+
+---
+
+## 4️⃣ Expected Loss (EL)
+
+```
 
 EL = PD × LGD × Exposure
 
-This estimates potential capital loss.
+```
+
+Assumptions:
+- LGD = 60% (unsecured working capital simulation)
 
 ---
 
-## ✅ RAROC (Profitability Check)
+## 5️⃣ Risk-Based Pricing
 
-RAROC measures if the loan generates sufficient return after adjusting for risk.
+```
 
-If profitability is too low → flagged for review.
+Interest Rate = Base Rate + Risk Premium
 
----
+```
 
-## ✅ Early Delinquency Monitoring
-
-After disbursement simulation, the system monitors:
-
-* GMV drop
-* Refund spike
-* Retention decline
-
-If deterioration is detected → risk metrics are recalculated.
+- Base Rate: 14%
+- Tier 1 Premium: +0–3%
+- Tier 2 Premium: +4–8%
+- Tier 3 Premium: +10–18%
 
 ---
 
-# 📊 Dashboard Features
+## 6️⃣ RAROC (Risk-Adjusted Return on Capital)
 
-The platform includes:
+```
 
-* Merchant list view
-* 12-month GMV momentum visualization
-* Risk benchmark comparison
-* Risk score breakdown
-* Credit & Insurance offer panel
-* Accepted offers tracking
-* Settlement simulation (24-hour reflection)
-* System Outbox (WhatsApp logs)
-* Admin System Logs (audit trail)
+RAROC = (Expected Revenue – Expected Loss – Operating Cost) / Economic Capital
+
+```
+
+Only offers above hurdle rate (18% simulated) are auto-approved.
 
 ---
 
-# 🔐 Role-Based Access Control
+# 📲 Why WhatsApp Delivery?
 
-Two login roles:
+- 500M+ users in India
+- Extremely high open rates (>90%)
+- Low friction for merchants
+- Supports structured business templates
+- Ideal for embedded financial distribution
 
-## 👤 Normal User
-
-* View merchant data
-* View underwriting results
-* View explanations
-* Cannot send financial offers
-* Cannot edit data
-
-## 👨‍💼 Admin
-
-* Add / edit merchants
-* Trigger underwriting
-* Send WhatsApp offers
-* Simulate acceptance & settlement
-* View system logs
-* Override decisions (committee simulation)
-
-This mirrors real financial governance.
+Admin-only sending ensures:
+- Governance
+- Compliance simulation
+- Audit trail integrity
 
 ---
 
-# 📜 System Logs (Governance)
+# 🔐 Admin Governance & Compliance
 
-Every action is logged:
+Role-based access control:
 
-* Login / Logout
-* Merchant added
-* Offer generated
-* Notification sent
-* Offer accepted
-* Settlement updated
+| Role        | View | Generate | Send WA | Edit | Override | Logs |
+|------------|------|----------|---------|------|----------|------|
+| User       | Yes  | Preview  | No      | No   | No       | Limited |
+| Admin      | Yes  | Yes      | Yes     | Yes  | Yes      | Full |
 
-This simulates enterprise-grade audit compliance.
+System logs:
+- Login events
+- Merchant onboarding
+- Offer generation
+- WhatsApp dispatch
+- Acceptance simulation
+- Overrides
 
----
-
-# 📦 Merchant Data Schema
-
-Each merchant includes:
-
-* merchant_id
-* category
-* monthly_gmv_12m
-* coupon_redemption_rate
-* unique_customer_count
-* customer_return_rate
-* avg_order_value
-* seasonality_index
-* deal_exclusivity_rate
-* return_and_refund_rate
-
----
-
-# 📱 WhatsApp Integration
-
-The system integrates with WhatsApp Business API (sandbox).
-
-Features:
-
-* Structured business notification
-* Offer preview before sending
-* Persistent notification log
-* Multiple merchant tracking
-
-Only Admin can send financial communication.
+Simulates NBFC governance model.
 
 ---
 
 # 🧪 Stress Testing
 
-The system includes stress scenarios such as:
+The system supports:
 
-* High refund spike
-* Extreme GMV volatility
-* Rapid decline in sales
-* Seasonal concentration risk
-* Low profitability (RAROC below threshold)
+- Refund spike simulation
+- GMV collapse detection
+- Tier change recalculation
+- Live repricing
+- Early delinquency simulation
 
-This demonstrates real-world underwriting resilience.
-
----
-
-# 🏗 Tech Stack
-
-* Next.js
-* TypeScript
-* Tailwind CSS
-* Claude (LLM underwriting agent)
-* WhatsApp API / Twilio Sandbox
-* Vercel Deployment
+Demonstrates forward-looking underwriting.
 
 ---
 
-# ⚙️ Getting Started (Local Development)
+# 📁 Project Structure
 
-Install dependencies:
+```
+
+/app
+/dashboard        → Merchant UI
+/admin            → Admin panel
+/login            → Role-based login
+/components         → Reusable UI components
+/lib
+risk-engine.ts    → Scoring + PD + EL logic
+pricing.ts        → Interest rate model
+exposure.ts       → Capital exposure controls
+/utils
+logger.ts         → Audit logging
+
+````
+
+---
+
+# ⚖ Trade-offs Made
+
+| Decision | Reason |
+|----------|--------|
+| Client-side demo logic | Fast iteration + zero infra cost |
+| Twilio Sandbox | Rapid WhatsApp integration |
+| Static merchant data | Deterministic stress testing |
+| Simplified PD | Demo clarity over ML complexity |
+
+---
+
+# 🚀 Production-Grade Extensions
+
+With more time:
+
+- Bureau score API integration (CIBIL/Experian)
+- Portfolio capital adequacy tracking
+- Real PayU settlement rails
+- Monte Carlo stress testing
+- ML-based PD training
+- Regulatory reporting exports
+- Server-side secure underwriting engine
+
+---
+
+# 💻 Local Setup
 
 ```bash
+git clone https://github.com/sai-vishal03/ai-underwriting-agent-grabon.git
+cd ai-underwriting-agent-grabon
 npm install
-```
-
-Run development server:
-
-```bash
 npm run dev
-```
+````
 
-Open:
-
+Visit:
 [http://localhost:3000](http://localhost:3000)
 
 ---
 
-# 🌍 Deployment
+# 🏁 Final Positioning
 
-Deployed on Vercel:
+This project demonstrates how GrabOn can convert behavioral transaction intelligence into a scalable merchant finance engine — transforming proprietary data into risk-calibrated capital deployment.
 
-[https://ai-underwriting-agent-grabon.vercel.app/](https://ai-underwriting-agent-grabon.vercel.app/)
+It is designed to survive:
 
----
-
-# 💡 Key Highlights
-
-This project demonstrates:
-
-* AI-powered underwriting
-* Explainable decisioning
-* Risk-based pricing
-* Credit risk modeling
-* Portfolio exposure management
-* Governance & audit logging
-* Role-based financial controls
-
-It simulates how embedded lending can be operationalized inside a commerce platform.
+* Executive scrutiny
+* Risk committee questioning
+* Live stress testing
+* Non-technical stakeholder demos
 
 ---
 
-# 📈 Future Enhancements (Optional)
+# 📜 License
 
-* Portfolio concentration heatmap
-* Monte Carlo stress testing
-* Capital adequacy simulation
-* Automated risk committee workflow
-* Real payment gateway integration
+MIT
 
----
-
-# 🏁 Conclusion
-
-This is a production-style simulation of:
-
-AI + Embedded Finance + Risk Governance
-
-Built to demonstrate how GrabOn can transform merchant data into intelligent financial products.
-
----
+```
