@@ -151,34 +151,60 @@ Built using:
 
 ---
 
-# 🗂 Project Structure (Not exactly correct, will be changed later)
+# 🗂 Project Structure
 
 ```
 ai-underwriting-agent-grabon/
-│
-├── public/                  # Static assets
+├── public/
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
 ├── src/
 │   ├── app/
-│   │   ├── admin/           # Admin dashboard
-│   │   ├── dashboard/       # Merchant dashboard
-│   │   ├── login/           # Role-based login
-│   │   └── profile/
-│   │
-│   ├── components/          # UI components
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── profile/
+│   │   │   └── page.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── auth/
+│   │   │   └── AuthContext.tsx
+│   │   ├── dashboard/
+│   │   │   ├── AboutSection.tsx
+│   │   │   ├── AddPartnerView.tsx
+   │   │   ├── Dashboard.tsx
+│   │   │   ├── LogsView.tsx
+│   │   │   ├── MerchantDetail.tsx
+│   │   │   ├── MerchantList.tsx
+│   │   │   ├── WhatsAppOutboxView.tsx
+│   │   │   └── WhatsAppWindow.tsx
+│   │   ├── layout/
+│   │   │   ├── Header.tsx
+│   │   │   ├── MainLayout.tsx
+│   │   │   └── Sidebar.tsx
+│   │   └── ui/
+│   │       └── ... (shadcn/ui components)
+│   ├── data/
+│   │   └── merchants.ts
 │   ├── hooks/
-│   ├── lib/                 # Core underwriting engines
-│   │   ├── risk-engine.ts
-│   │   ├── pricing.ts
-│   │   ├── exposure.ts
-│   │   ├── twilio.ts
-│   │   └── claude.ts
-│   │
-│   ├── types/
-│   └── data/
-│
-├── README.md
+│   │   └── use-mobile.ts
+│   ├── lib/
+│   │   ├── underwriting.ts
+│   │   └── utils.ts
+│   └── types/
+│       └── index.ts
+├── components.json
+├── eslint.config.mjs
+├── next.config.ts
 ├── package.json
-└── next.config.ts
+├── postcss.config.mjs
+├── tsconfig.json
+└── README.md
 ```
 
 ---
